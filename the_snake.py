@@ -41,6 +41,7 @@ clock = pygame.time.Clock()
 # Тут опишите все классы игры.
 class GameObject:
     """Base game object class"""
+
     def __init__(self):
         self.position = None
         self.body_color = None
@@ -75,6 +76,7 @@ class Apple(GameObject):
 
 class Snake(GameObject):
     """Class represents the snake on the game board"""
+
     def __init__(self):
         super().__init__()
         self.body_color = SNAKE_COLOR
@@ -123,6 +125,7 @@ class Snake(GameObject):
 
 def handle_keys(game_object):
     """Handle pressed keys"""
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
