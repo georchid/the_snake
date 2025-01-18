@@ -137,7 +137,7 @@ def main():
     snake = Snake()
     apple = Apple()
     best_score = 0
-    while apple.position in apple.positions:
+    while apple.position in snake.positions:
         apple.position = apple.randomize_position()
 
     while True:
@@ -146,13 +146,18 @@ def main():
         handle_keys(snake)
         snake.update_direction()
         snake.move()
+        if snake.get_head_position == apple.position:
+            snake.length += 1
+            while apple.position in snake.positions:
+                apple.position = apple.randomize_position()
+
         if snake.get_head_position in snake.positions[1:]:
             if snake.length > best_score:
                 pygame.display.set_caption(
                     f'Змейка (best score: {snake.length})'
                 )
                 best_score = snake.length
-            snake = snake.reset
+            snake = snake.reset()
         snake.draw()
         apple.draw()
         pygame.display.update()
